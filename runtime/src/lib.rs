@@ -46,6 +46,8 @@ pub type BlockNumber = u64;
 /// Index of an account's extrinsic in the chain.
 pub type Nonce = u64;
 
+mod substratekitties;
+
 /// Used for the module template in `./template.rs`
 mod template;
 
@@ -173,6 +175,8 @@ impl sudo::Trait for Runtime {
 	type Proposal = Call;
 }
 
+impl substratekitties::Trait for Runtime {}
+
 /// Used for the module template in `./template.rs`
 impl template::Trait for Runtime { 
 	type Event = Event;
@@ -191,6 +195,7 @@ construct_runtime!(
 		Indices: indices,
 		Balances: balances,
 		Sudo: sudo,
+		Substratekitties: substratekitties::{Module, Call, Storage},
 		Fees: fees::{Module, Storage, Config<T>, Event<T>},
 		// Used for the module template in `./template.rs`
 		TemplateModule: template::{Module, Call, Storage, Event<T>},
